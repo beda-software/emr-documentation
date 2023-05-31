@@ -16,11 +16,11 @@ jobs:
         run: yarn install --network-concurrency 1
       - name: Build project
         run: yarn build
-      - name: Copy build to server
+      - name: Copy built files to server
         uses: appleboy/scp-action@master
         with:
           host: ${{secrets.REMOTE_HOST}}
-          username: ${{secrets.REMOTE_HOST}}
+          username: ${{secrets.REMOTE_USER}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
           source: "build"
           target: "emr-doc"
