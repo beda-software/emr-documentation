@@ -17,7 +17,7 @@ jobs:
       - name: Build project
         run: yarn build
       - name: Upload built files to server
-        uses: easingthemes/ssh-deploy@vmain
+        uses: easingthemes/ssh-deploy@main
         env:
             SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
             ARGS: '-rltgoDzvO'
