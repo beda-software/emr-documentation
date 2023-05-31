@@ -22,5 +22,5 @@ jobs:
           host: ${{secrets.REMOTE_HOST}}
           username: ${{secrets.REMOTE_USER}}
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          source: "build"
+          source: "build/*"
           target: "emr-doc"
