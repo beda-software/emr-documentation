@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Beda EMR documentation',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'AI powered. Patient Centric. Open Source.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -74,7 +74,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Guide',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -91,8 +91,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Guides',
+                to: '/docs/getting-started',
               },
             ],
           },
