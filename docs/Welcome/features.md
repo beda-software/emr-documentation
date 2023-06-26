@@ -31,3 +31,10 @@ sidebar_position: 2
 ## Consent Management
 
 ## Telehealth
+
+## Clinical Forms Management tools
+- Clinician-friendly
+  
+- AI-powered tool to creating forms by description
+  
+- Advanced tool to design sophisticated logic for tech-savvy users
