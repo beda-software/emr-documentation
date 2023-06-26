@@ -2,4 +2,4 @@
 sidebar_position: 8
 ---
 
-# Medical Forms Management
+# Clinical Forms Management
