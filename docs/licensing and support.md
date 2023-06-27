@@ -26,7 +26,15 @@ The deployment options
 | | | Ongoing support and SLA |
 | | | HIPAA, PIPEDA, GDPR compliance technical safeguards |
  
+## Monthly Support Tiers
 
+| Basic | Professional | Enterprise | Ultimate |
+|---|---|---| --- |
+| Private chat  | Everything in Basic | Everything in Professional  | Everything in Enterprise |
+|  Fixing blocking issues | Fixing non-blocking issues | Collaborative problem solving over a video conference  | Custom Beda EMR Build |
+|  Basic consulting | Education sessions for users | HL7 FHIR best practises and guidelines  | Fully customized design & branding |
+| |  Ability to request new features | | Participating in product launch |
+| | | | Dedicated engineer |
 
  
 
