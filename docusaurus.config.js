@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Beda EMR documentation',
+  title: 'Beda EMR Documentation',
   tagline: 'AI powered. Patient Centric. Open Source.',
   favicon: 'img/favicon.ico',
 
@@ -39,11 +39,11 @@ const config = {
       ({
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve('./sidebars.js')
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/beda-software/emr-documentation/tree/main',
+          // editUrl:
+          //   'https://github.com/beda-software/emr-documentation/tree/main',
         },
         blog: {
           showReadingTime: true,
@@ -63,11 +63,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/doc-emr-beda-software-og-image.jpg',
       navbar: {
         title: 'Beda EMR Documentation',
         logo: {
-          alt: 'BedaEMR Logo',
+          alt: 'Beda EMR Logo',
           src: 'img/logo512.png',
         },
         items: [
@@ -77,7 +77,7 @@ const config = {
             position: 'left',
             label: 'Guide',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: 'Release Notes', position: 'left'},
           {
             href: 'https://github.com/beda-software/fhir-emr',
             label: 'GitHub',
@@ -89,41 +89,15 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Beda EMR Links',
             items: [
               {
-                label: 'Guides',
-                to: '/docs/getting-started',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Product Page',
+                href: 'https://beda.software/emr',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/beda-software/fhir-emr',
               },
             ],
           },

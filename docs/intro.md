@@ -1,5 +1,0 @@
----
-slug: /
----
-
-Beda EMR Documentation
