@@ -55,7 +55,29 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: {
+          trackingID: 'G-FKPL9CLHHB',
+        },
+        sitemap: {
+          changefreq: 'monthly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
       }),
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-ideal-image',
+      {
+        quality: 85,
+        max: 800, // max resized image's size.
+        min: 400, // min resized image's size. if original is lower, use that size.
+        steps: 2, // the max number of images generated between min and max (inclusive)
+        disableInDev: false,
+      },
     ],
   ],
 
