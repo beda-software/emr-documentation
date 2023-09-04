@@ -1,6 +1,6 @@
 ---
 slug: 2023-08-04-release-notes
-title: Release Notes July 2023
+title: July 2023
 authors: yana
 tags: [release-notes, updates]
 ---
