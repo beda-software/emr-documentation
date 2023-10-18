@@ -1,9 +1,11 @@
 ---
 slug: 2023-10-05-release-notes
-title: August 2023
+title: September 2023
 authors: yana
 tags: [release-notes, updates]
 ---
+
+Beda EMR Release Notes. September 2023.
 
 # New Features
 
