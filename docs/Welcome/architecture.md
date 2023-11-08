@@ -19,17 +19,18 @@ However, in some cases, we have to step out from the standard. An example is the
 
 ## Services
 Beda EMR requires several services to be deployed:
-Component|Designation
----------|-----------
-FHIR server|Any FHIR server that will provide full-features FHIT API and persistence layer
-[Beda EMR](https://github.com/beda-software/fhir-emr)|Frontend that turns FHIR server into EMR
-[Scheduling](https://github.com/beda-software/aidbox-scheduling-node-app)|Inspired by Argo Scheduling
-[SDC IDE](https://github.com/beda-software/sdc-ide)|Development environment for Questionnaires and Mappers
-[FHIR SDC](https://github.com/beda-software/fhir-sdc)|Backend modules for SDC, include population and extraction
-[mHealth](https://github.com/beda-software/fhir-mhealth)|iOS application that loads activity data via Apple Health
-[data sequence](https://github.com/beda-software/fhir-datasequence)|A backend that saves activities from Apple Health into TimescaleDB
+
+Component|Designation  
+---------|----------- 
+FHIR server|Any FHIR server that will provide full-features FHIT API and persistence layer  
+[Beda EMR](https://github.com/beda-software/fhir-emr)|Frontend that turns FHIR server into EMR  
+[Scheduling](https://github.com/beda-software/aidbox-scheduling-node-app)|Inspired by Argo Scheduling  
+[SDC IDE](https://github.com/beda-software/sdc-ide)|Development environment for Questionnaires and Mappers  
+[FHIR SDC](https://github.com/beda-software/fhir-sdc)|Backend modules for SDC, include population and extraction  
+[mHealth](https://github.com/beda-software/fhir-mhealth)|iOS application that loads activity data via Apple Health  
+[data sequence](https://github.com/beda-software/fhir-datasequence)|A backend that saves activities from Apple Health into TimescaleDB  
 
 Please check [docker compose configuration](https://github.com/beda-software/fhir-emr/blob/master/compose.yaml) for more details.
 
 ## Architecture diagram
-<img src="https://doc.emr.beda.software/img/architecture-diagram.jpg"/>
+<img src="/img/architecture-diagram.jpg"/>
