@@ -15,7 +15,7 @@
 | Patients            |   ✅   |       ❌      |       ✅      |    ❌    |https://emr.beda.software/patients|
 | Practitioners       |   ✅   |       ❌      |       ❌      |    ❌    |https://emr.beda.software/practitioners|
 | Questionnaires      |  ✅   |       ❌      |       ✅      |    ❌    |https://emr.beda.software/questionnaires| 
-| Scheduling          |   ❌   |       ✅      |       ❌      |    ❌    |https://emr.beda.software/scheduling|
+| [Scheduling](Scheduling)          |   ❌   |       ✅      |       ❌      |    ❌    |https://emr.beda.software/scheduling|
 | Patient's dashboard |   ❌   |       ❌      |       ✅      |    ✅    |https://emr.beda.software/ for the Patient|
 ## Demo Credentials
 |Role|Login|Password|
