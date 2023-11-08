@@ -9,7 +9,7 @@
 ## Modules by role
 | Module         | Admin | Receptionist | Practitioner | Patient |URL|
 |---------------------|-|-|-------|--------------|--------------|---------|
-| Invoices            |   ✅   |       ✅      |       ❌      |    ✅    |https://emr.beda.software/invoices|
+| [Invoices](Invoices)            |   ✅   |       ✅      |       ❌      |    ✅    |https://emr.beda.software/invoices|
 | [Services](HealthcareServiceManagement)            |   ✅   |       ❌      |       ❌      |    ❌    |https://emr.beda.software/healthcare-services|
 | Encounters          |   ✅   |       ❌      |       ✅      |    ❌    |https://emr.beda.software/encounters|
 | Patients            |   ✅   |       ❌      |       ✅      |    ❌    |https://emr.beda.software/patients|
