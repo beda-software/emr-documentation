@@ -15,6 +15,8 @@ Subscriptions may trigger a more complex logic in 3rd-party modules. These modul
 We prefer to stick as close as possible to tools driven by the FHIR community. For example, we are using TestScript to test and validate Questionnaire behavior. 
 However, in some cases, we have to step out from the standard. An example is the FHIR Mapping language, we are going to add extraction with FHIR Mapping language but the preferable way is our custom solution https://github.com/beda-software/fhirpathmappinglanguage.
 
+
+
 ## Services
 Beda EMR requires several services to be deployed:
 Component|Designation
@@ -28,3 +30,6 @@ FHIR server|Any FHIR server that will provide full-features FHIT API and persist
 [data sequence](https://github.com/beda-software/fhir-datasequence)|A backend that saves activities from Apple Health into TimescaleDB
 
 Please check [docker compose configuration](https://github.com/beda-software/fhir-emr/blob/master/compose.yaml) for more details.
+
+## Architecture diagram
+<img src="https://doc.emr.beda.software/img/architecture-diagram.jpg"/>
