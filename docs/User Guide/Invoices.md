@@ -1,3 +1,7 @@
+---
+sidebar_position: 12
+---
+
 # Invoices
 ## General information
 ### Definition

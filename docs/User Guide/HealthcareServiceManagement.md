@@ -1,3 +1,7 @@
+---
+sidebar_position: 11
+---
+
 # Healthcare Service Management
 ## General information
 ### Definition

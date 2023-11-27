@@ -1,3 +1,7 @@
+---
+sidebar_position: 13
+---
+
 # User roles
 ## Short overview
 |Role|Description|
