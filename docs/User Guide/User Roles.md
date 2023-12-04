@@ -7,7 +7,7 @@ sidebar_position: 13
 |Role|Description|
 |----|-----------|
 |Admin|Kind of superuser in the system. Can manage system, resources, practitioners, etc.|
-|Receptionist|Can schedule/cancel appointments for the patient and manage their invoices.|
+|Receptionist|Can schedule/cancel appointments for the patient, manage their invoices, confirm/cancel prescriptions|
 |Practitioner|Can manage their own appointments, questionnaires, and patient care.|
 |Patient|Can see their own invoices and medical information related to them.|
 ## Modules by role
@@ -21,6 +21,9 @@ sidebar_position: 13
 | Questionnaires      |  ✅   |       ❌      |       ✅      |    ❌    |https://emr.beda.software/questionnaires| 
 | [Scheduling](Scheduling)          |   ❌   |       ✅      |       ❌      |    ❌    |https://emr.beda.software/scheduling|
 | Patient's dashboard |   ❌   |       ❌      |       ✅      |    ✅    |https://emr.beda.software/ for the Patient|
+| [Medications management](Medications) |   ❌   |       ✅      |       ❌      |    ❌    |https://emr.beda.software/medications|
+| [Prescriptions management](PrescriptionsManagement) |   ❌   |       ✅      |       ❌      |    ❌    |https://emr.beda.software/prescriptions|
+| [Prescriptions create](PrescriptionsManagement#create) |   ❌   |       ❌      |       ✅      |    ❌    |Available on the consultation page|
 ## Demo Credentials
 |Role|Login|Password|
 |----|-----|--------|
