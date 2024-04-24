@@ -1,18 +1,50 @@
 # Custom EMR build
-Beda EMR is designe to be a framework for building EHR and EMR solutions on top of it. This article descrines how you can build your own custom version of Beda EMR sutable for your needs.
+Beda EMR is designed to be a framework for building EHR and EMR solutions on top of it. This article describes how you can build your own custom version of Beda EMR suitable for your needs.
 
-1. Add https://github.com/beda-software/fhir-emr as a submodule to your repository. In tsconfig.json specify `src/*` and `shared/*` to be seached in beda-emr submodule. 
-*Now fhir-emr uses relative paths from src/ it will be fixed in the futurte to use @fhir-emr namespace. But niw you have to admit that src and shared reserved form emr components*
-```json
-{
-  "compilerOptions": {
-  ...
-  "paths": {
-      "src/*": ["./contrib/fhir-emr/src/*"],
-      "shared/*": ["./contrib/fhir-emr/shared/*"]
-    },
-  }
-}
+1. Initialize the project. We recommend using [vitejs](https://vitejs.dev/) and [yarn](https://yarnpkg.com/), but you can use any other tool for building the frontend.
+```
+yarn create vite@latest  your_awesome_emr -- --template react-ts
+```
+
+2. Add https://github.com/beda-software/fhir-emr as a submodule to your repository.
+Use relative name `../../beda-software/fhir-emr` for repositories hosted on GitHub, or absolute URL in other cases.
+```
+git submodule add ../../beda-software/fhir-emr ./contrib/fhir-emr/
+```
+
+In tsconfig.json specify `src/*` and `shared/*` to be seached in fhir-emr submodule. 
+*Now fhir-emr uses relative paths from src/ it will be fixed in the future to use @fhir-emr namespace. But now you have to admit that src and shared reserved form emr components*
+```diff
+@@ -18,7 +18,15 @@
+     "strict": true,
+     "noUnusedLocals": true,
+     "noUnusedParameters": true,
+-    "noFallthroughCasesInSwitch": true
++    "noFallthroughCasesInSwitch": true,
++    "allowSyntheticDefaultImports": true,
++
++    /* Modules */
++    "baseUrl": ".",
++    "paths": {
++      "src/*": ["./contrib/fhir-emr/src/*"],
++      "shared/*": ["./contrib/fhir-emr/shared/*"]
++    },
+   },
+   "include": ["src"],
+   "references": [{ "path": "./tsconfig.node.json" }]
+```
+Also, update tsconfig.json 
+```diff
+@@ -4,8 +4,7 @@
+     "skipLibCheck": true,
+     "module": "ESNext",
+     "moduleResolution": "bundler",
+-    "allowSyntheticDefaultImports": true,
+-    "strict": true
++    "allowSyntheticDefaultImports": true
+   },
+   "include": ["vite.config.ts"]
+ }
 ```
 3. Add fhir emr dependencies into your package.json file
 4. Inside src directory create a prefixed directory for your emr customization. For example let's call it '`yourEmr`.
