@@ -2,39 +2,35 @@
 sidebar_position: 2
 ---
 
+
 # Features
 
-## Medical Records
-- Patient demographics
-- Medical history
-- Medical encounters
+- Appointment and Encounters (visits management, scheduling)
+- Electronic Medical Records
+  - based on Questionnaire and QuestionnaireResponse resources
+  - Questionnaire population, initial and calculated expressions
+  - extraction FHIR data from QuestionnaireResponse on save
+- EMR Questionnaire form builder
+- HealthcareService management
+- Invoice management
+- Medication management
+  - Warehouse management
+  - Prescriptions management
+- Patient medical information
+- Patients management
+- Practitioners management
+- Role-based functionality (Admin, Receptionist, Practitioner, Patient)
+- Telemedicine
 - Treatment notes
-- Active conditions
-- Diagnoses
-- Medications
-- Immunization dates
-- Allergies
-- Vital signs
-- Lab results
 
-## Scheduling
-- Appointments Booking
-- Clinicians availability management
+# Benefits
 
-## Patient Portal
-- Access to all Medical Records
-- Ability to provide health information
-- Integrated wearables data tracking
-- Managing access for your Health Records
-- Web and Mobile platforms supported
-
-## Consent Management
-
-## Telehealth
-
-## Clinical Forms Management tools
-- Clinician-friendly
-  
-- AI-powered tool to creating forms by description
-  
-- Advanced tool to design sophisticated logic for tech-savvy users
+-   Fully FHIR compatible:
+    -   all app data are stored as FHIR resources
+    -   any app data are available via FHIR API
+-   Extremely flexible:
+    -   use extensions and profiles to adjust FHIR data model
+-   Fast to build forms and CRUD
+    -   all forms in the app are just Questionnaire resources
+-   Build the app with no-code
+    -   app provides UI Questionnaire builder for creating Questionnaires
