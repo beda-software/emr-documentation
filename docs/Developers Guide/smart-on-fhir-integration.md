@@ -1,6 +1,6 @@
-# Smile CDR integration
+# SMART on FHIR integration
 
-This doc will help you to launch Beda EMR with Smile HAPI FHIR Server
+This doc will help you to launch Beda EMR as SMART on FHIR application
 
 ## Authentication
 
