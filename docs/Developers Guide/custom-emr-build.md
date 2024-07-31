@@ -7,11 +7,11 @@ Beda EMR is designed to be a framework for building EHR and EMR solutions on top
 We prepared [Beda EMR template](https://github.com/beda-software/emr-template) for quick project initialization. The template
 - uses [vitejs](https://vitejs.dev/) and [yarn](https://yarnpkg.com/) for building frontend;
 - already includes all required dev dependencies;
-- includes [Beda EMR](https://github.com/beda-software/fhir-emr) as dependency so you could use containers, components, utils, etc. for you EMR;
+- includes [Beda EMR](https://github.com/beda-software/fhir-emr) as dependency so you could use containers, components, utils, etc. for your EMR;
 - has [linter](https://eslint.org/), [prettier](https://prettier.io/) and [husky](https://typicode.github.io/husky/) configured for better development experience;
 - includes basic [lingui](https://lingui.dev/) configuration
 - includes custom [aidbox types](https://docs.aidbox.app/storage-1/aidbox-and-fhir-formats)
-- has [storybook](https://storybook.js.org/) configured for development your custom components
+- has [storybook](https://storybook.js.org/) configured for your custom components development
 
 ## Quick start guide
 
@@ -19,27 +19,27 @@ We prepared [Beda EMR template](https://github.com/beda-software/emr-template) f
 Start with fork or clone of Beda EMR template https://github.com/beda-software/emr-template.
 
 2. Initialize [Beda EMR](https://github.com/beda-software/fhir-emr) submodule.
-```
+```bash
 git submodule update --init
 ```
 
 3. Copy local configuration file for development
-```
+```bash
 cp contrib/emr-config/config.local.js contrib/emr-config/config.js
 ```
 
 4. Prepare to run
-```
+```bash
 yarn
 ```
 
 5. Build language locales
-```
+```bash
 yarn compile
 ```
 
 6. Run
-```
+```bash
 yarn start
 ```
 
@@ -53,13 +53,13 @@ Next steps:
 ## Running backend
 
 Copy envs
-```
+```bash
 cp contrib/fhir-emr/.env.tpl contrib/fhir-emr/.env
 ```
 
-Add your aidbox license to .env
+Add your aidbox license to .env and then run
 
-```
+```bash
 cd contrib/fhir-emr
 docker-compose up
 ```
@@ -69,14 +69,14 @@ docker-compose up
 You can update code of EMR inside `contrib/fhir-emr` directory.
 But to see your changes you need to run
 
-```
+```bash
 yarn prepare
 ```
 
 Remember to push or make pull request for your changes in [Beda EMR](https://github.com/beda-software/fhir-emr) if you want them to be applied.
 
 Then add updated submodule to your git commit
-```
+```bash
 git add contrib/fhir-emr
 git commit -m "Update submodule"
 ```
@@ -100,8 +100,34 @@ yarn compile
 Storybook works out of the box. If you need to create your own components you can create stories for them.
 
 To run storybook use
-```
+```bash
 yarn storybook
 ```
 
 The main storybook for Beda EMR also publicly available [here](https://master--64b7c5c51809d460dc448e6b.chromatic.com/).
+
+## Imports troubleshooting
+
+<b>1. If you face typescript/eslint error like</b>
+
+```js
+Module '"@beda.software/emr/utils"' has no exported member 'getPersonAge'
+```
+
+Make sure that `getPersonAge` was used somewhere in the Beda EMR or it was explicitly exported
+
+```js
+export * from './relative-date.ts';
+```
+
+<b> 2. If you face next eslint error when you import interface or type</b>
+
+```js
+Unable to resolve path to module '@beda.software/emr/dist/components/Dashboard/types'.(eslintimport/no-unresolved)
+
+```
+
+Make sure to add  `type` when for your import
+
+```js
+import type { Dashboard } from '@beda.software/emr/dist/components/Dashboard/types';
