@@ -63,10 +63,10 @@ To run EMR with our Jitsi authentication backend service run:
 #### Prepare frontend configuration
 
 ```
-cp shared/src/config.local.ts shared/src/config.ts
+cp contrib/emr-config/config.local.js contrib/emr-config/config.js
 ```
 
-This file (`shared/src/config.ts`) is ignored by git. So, feel free to change it.
+This file (`contrib/emr-config/config.js`) is ignored by git. So, feel free to change it.
 
 ```sh
 yarn
