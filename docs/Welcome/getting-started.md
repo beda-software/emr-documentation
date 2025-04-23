@@ -51,10 +51,9 @@ In the EMR folder add these variables to `.env` file with values you generated o
 
 ```
 # Application identifier
-JWT_APP_ID=
-JWT_APP_SECRET=
-JWT_ACCEPTED_ISSUERS=
-JWT_ACCEPTED_AUDIENCES=
+AUTH_JWT_SECRET=
+AUTH_JWT_ACCEPTED_ISSUERS=
+AUTH_JWT_ACCEPTED_AUDIENCES=
 ```
 
 To run EMR with our Jitsi authentication backend service run:
