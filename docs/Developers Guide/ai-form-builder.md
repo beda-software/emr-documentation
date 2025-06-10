@@ -13,6 +13,7 @@ If you are interested in trying this tool, please contact us in one of the avail
 
 - Set up environment variables for the container:
     - OPENAI_API_KEY: required   
+    - OPENAI_GPT_MODEL. OpenAI GPT model, `gpt-4o` by default   
     - TOKEN_VALIDATION_URL: required. Endpoint for checking auth token. Usually userinfo endpoint of your identity server (e.g "identity-server-url/auth/userinfo")   
     - APP_PORT: the port which the application is listening to. Optional. Default is 3002
 
