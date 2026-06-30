@@ -124,7 +124,7 @@ getRecordClinicalContextDefault(record);
 
 ### Authenticated session (`EMR` container)
 
-After login, the whole authenticated app is wrapped in `ClinicalContext` with the current user's role resource:
+After login, the whole authenticated app is wrapped in `ClinicalContext` with the current user's role resource. See [EMR component](./emr-component.md) for how the container fits into a custom build.
 
 - `User` — role resource (Practitioner, Patient, etc.)
 - `{resourceType}` — same resource under its FHIR type name
@@ -326,6 +326,7 @@ If you maintain a custom EMR build on top of Beda EMR:
 
 ## Related documentation
 
+- [EMR component](./emr-component.md) — application shell, routing, and menu customization
 - [Form render engine](./form-engine.md) — integrating `@beda.software/fhir-questionnaire` in custom projects
 - [Custom EMR build](./custom-emr-build.md) — project setup and customization entry points
 - [fhir-questionnaire ClinicalContext README](https://github.com/beda-software/fhir-questionnaire#clinicalcontext) — package-level API reference
