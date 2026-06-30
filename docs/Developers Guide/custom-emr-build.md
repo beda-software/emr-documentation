@@ -48,6 +48,7 @@ Now you have fhir-emr under your full control.
 Next steps:
 - you can copy the whole https://github.com/beda-software/fhir-emr/blob/master/src/containers/App/index.tsx into your workspace to adjust routes and adjust page components.
 - you can replace the patient dashboard and theme as the next step of customization.
+- when adding questionnaire-driven pages or list actions, use [Clinical context](./clinical-context.md) to pass patient, encounter, and author resources to forms.
 
 
 ## Running backend
