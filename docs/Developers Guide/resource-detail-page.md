@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Resource detail page
 
 `ResourceDetailPage` is the standard layout for FHIR resource detail views in a custom Beda EMR build. It loads a record from the server, wraps the page in clinical context, renders a tabbed header, and mounts tab content as nested routes.

@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Resource list page
 
 `ResourceListPage` and `ResourceListPageContent` are the standard building blocks for FHIR resource list views in a custom Beda EMR build. They load paginated search results, render a filterable table, and wire up header, row, and batch actions — including questionnaire modals and navigation links.

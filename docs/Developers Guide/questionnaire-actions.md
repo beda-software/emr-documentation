@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Questionnaire actions
 
 Header, row, and batch buttons on [`ResourceListPage`](./resource-list-page.md) can open questionnaire modals instead of custom React forms. You define two FHIR resources:
@@ -393,6 +397,5 @@ Browse all seeds: [`resources/init-seeds/`](https://github.com/beda-software/fhi
 
 - [Resource list page](./resource-list-page.md) — `questionnaireAction`, header/row/batch action wiring
 - [Clinical context](./clinical-context.md) — launch parameters for questionnaires
-- [Form render engine](./form-engine.md) — using `@beda.software/fhir-questionnaire` outside Beda EMR
 - [FHIRPath Mapping Language](https://github.com/beda-software/FHIRPathMappingLanguage) — mapping DSL specification and examples
 - [Form Builder](../User%20Guide/Form%20Builder.md) — SDC IDE and AI-assisted questionnaire authoring

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # EMR component
 
 The `EMR` component is the main application shell of [Beda EMR](https://github.com/beda-software/fhir-emr). Use it as the root of a custom EMR build when you want to compose your own routes, sidebar menu, and authentication flow while reusing Beda EMR's layout, session handling, and built-in pages.
@@ -223,4 +227,3 @@ Mix Beda EMR containers with your own list pages (`ResourceListPage`) and detail
 - [Questionnaire actions](./questionnaire-actions.md) — Questionnaire + Mapping pairs for list page buttons
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout
 - [Clinical context](./clinical-context.md) — session and page-level FHIR context for questionnaires
-- [Form render engine](./form-engine.md) — using `@beda.software/fhir-questionnaire` outside Beda EMR

@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Clinical context
 
 Clinical context is the working environment of a practitioner in Beda EMR: the signed-in user, the patient whose chart is open, the active encounter, and other FHIR resources that questionnaires and mappers need at runtime.
@@ -313,6 +317,5 @@ If you maintain a custom EMR build on top of Beda EMR:
 - [Resource list page](./resource-list-page.md) — list page layout and action wiring
 - [Questionnaire actions](./questionnaire-actions.md) — Questionnaire + Mapping authoring for list actions
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout
-- [Form render engine](./form-engine.md) — integrating `@beda.software/fhir-questionnaire` in custom projects
 - [Custom EMR build](./custom-emr-build.md) — project setup and customization entry points
-- [fhir-questionnaire ClinicalContext README](https://github.com/beda-software/fhir-questionnaire#clinicalcontext) — package-level API reference
+- [fhir-questionnaire](https://github.com/beda-software/fhir-questionnaire) — SDC form engine and ClinicalContext API
