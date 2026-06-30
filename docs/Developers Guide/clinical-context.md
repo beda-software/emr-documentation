@@ -198,26 +198,9 @@ The list row resource is `Consent`, but questionnaires expect `Patient`. Provide
 
 ### Resource detail pages (`ResourceDetailPage`)
 
-`ResourceDetailPage` is a layout wrapper around `RenderBundleResourceContext`. It loads the detail record from FHIR, wraps the page in `ClinicalContext`, and renders tab routes. All props shared with `RenderBundleResourceContext` — including `getClinicalContext` — are passed through via `{...props}`.
+`ResourceDetailPage` loads a FHIR record, wraps the page in `ClinicalContext`, and renders tab routes. All props shared with `RenderBundleResourceContext` — including `getClinicalContext` — are passed through via `{...props}`.
 
-```tsx
-// src/uberComponents/ResourceDetailPage/index.tsx (simplified)
-export function ResourceDetailPage<R extends Resource>(props: DetailPageProps<R>) {
-    return (
-        <RenderBundleResourceContext<R> {...props}>
-            {(context) => (
-                <PageContainer title={getTitle(context)} /* ... */>
-                    <Routes>
-                        {tabs.map(({ path, component }) => (
-                            <Route path={'/' + path} element={component(context)} />
-                        ))}
-                    </Routes>
-                </PageContainer>
-            )}
-        </RenderBundleResourceContext>
-    );
-}
-```
+For routing, tab configuration, props, and full examples, see [Resource detail page](./resource-detail-page.md).
 
 #### `getClinicalContext` on the detail page
 
@@ -327,6 +310,7 @@ If you maintain a custom EMR build on top of Beda EMR:
 ## Related documentation
 
 - [EMR component](./emr-component.md) — application shell, routing, and menu customization
+- [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout
 - [Form render engine](./form-engine.md) — integrating `@beda.software/fhir-questionnaire` in custom projects
 - [Custom EMR build](./custom-emr-build.md) — project setup and customization entry points
 - [fhir-questionnaire ClinicalContext README](https://github.com/beda-software/fhir-questionnaire#clinicalcontext) — package-level API reference
