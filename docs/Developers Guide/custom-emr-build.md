@@ -47,7 +47,7 @@ Now you have fhir-emr under your full control.
 
 Next steps:
 - mount the [`EMR`](./emr-component.md) component and define your own routes, sidebar menu, and sign-in flow (see [beda.fhirlab.net](https://github.com/beda-software/beda.fhirlab.net) and [emr.au-core](https://github.com/beda-software/emr.au-core) for real-world examples).
-- you can reuse Beda EMR containers (`PatientList`, `EncounterList`, etc.) or build custom pages with `ResourceListPage` and [`ResourceDetailPage`](./resource-detail-page.md).
+- you can reuse Beda EMR containers (`PatientList`, `EncounterList`, etc.) or build custom pages with [`ResourceListPage`](./resource-list-page.md) and [`ResourceDetailPage`](./resource-detail-page.md).
 - you can replace the patient dashboard and theme as the next step of customization.
 - when adding questionnaire-driven pages or list actions, use [Clinical context](./clinical-context.md) to pass patient, encounter, and author resources to forms.
 

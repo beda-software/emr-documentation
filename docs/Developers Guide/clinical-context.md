@@ -160,7 +160,7 @@ The render prop receives `{ resource, bundle, reload }`.
 
 ### Resource list pages (`ResourceListPage`)
 
-`getClinicalContext` controls what is passed to questionnaire actions:
+See [Resource list page](./resource-list-page.md) for full component documentation. `getClinicalContext` controls what is passed to questionnaire actions:
 
 | Action scope | `record` argument | Default behavior |
 | ------------ | ----------------- | ---------------- |

@@ -128,7 +128,7 @@ type Tab<R extends Resource, Extra = unknown> = {
 
 ## Pairing with list pages
 
-Detail pages are typically opened from a [`ResourceListPage`](https://github.com/beda-software/fhir-emr/blob/main/src/uberComponents/ResourceListPage/index.tsx) via a `navigationAction` row action. Register both routes in `EMR`:
+Detail pages are typically opened from a [`ResourceListPage`](./resource-list-page.md) via a `navigationAction` row action. Register both routes in `EMR`:
 
 ```tsx
 <Route path="/medications" element={<MedicationManagementList />} />
@@ -195,6 +195,7 @@ Tab components and nested lists inside tabs inherit this context automatically. 
 
 ## Related documentation
 
+- [Resource list page](./resource-list-page.md) — standalone and nested FHIR resource lists
 - [EMR component](./emr-component.md) — register detail routes in `authenticatedRoutes`
 - [Clinical context](./clinical-context.md) — `getClinicalContext` on detail and nested list pages
 - [Custom EMR build](./custom-emr-build.md) — project setup and customization entry points

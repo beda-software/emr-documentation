@@ -214,11 +214,12 @@ import {
 <Route path="/practitioners" element={<PractitionerList />} />
 ```
 
-Mix Beda EMR containers with your own list pages (`ResourceListPage`) and detail views (`ResourceDetailPage`) as needed. See [Resource detail page](./resource-detail-page.md) for tabbed detail layout, routing, and props.
+Mix Beda EMR containers with your own list pages (`ResourceListPage`) and detail views (`ResourceDetailPage`) as needed. See [Resource list page](./resource-list-page.md) for table layout, actions, and filters, and [Resource detail page](./resource-detail-page.md) for tabbed detail layout.
 
 ## Related documentation
 
 - [Custom EMR build](./custom-emr-build.md) — project template and quick start
+- [Resource list page](./resource-list-page.md) — FHIR resource list layout, table columns, and actions
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout
 - [Clinical context](./clinical-context.md) — session and page-level FHIR context for questionnaires
 - [Form render engine](./form-engine.md) — using `@beda.software/fhir-questionnaire` outside Beda EMR
