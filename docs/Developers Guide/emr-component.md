@@ -220,6 +220,7 @@ Mix Beda EMR containers with your own list pages (`ResourceListPage`) and detail
 
 - [Custom EMR build](./custom-emr-build.md) — project template and quick start
 - [Resource list page](./resource-list-page.md) — FHIR resource list layout, table columns, and actions
+- [Questionnaire actions](./questionnaire-actions.md) — Questionnaire + Mapping pairs for list page buttons
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout
 - [Clinical context](./clinical-context.md) — session and page-level FHIR context for questionnaires
 - [Form render engine](./form-engine.md) — using `@beda.software/fhir-questionnaire` outside Beda EMR

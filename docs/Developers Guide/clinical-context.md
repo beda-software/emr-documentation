@@ -160,7 +160,7 @@ The render prop receives `{ resource, bundle, reload }`.
 
 ### Resource list pages (`ResourceListPage`)
 
-See [Resource list page](./resource-list-page.md) for full component documentation. `getClinicalContext` controls what is passed to questionnaire actions:
+See [Resource list page](./resource-list-page.md) for full component documentation and [Questionnaire actions](./questionnaire-actions.md) for defining the `Questionnaire` and `Mapping` resources behind header, row, and batch buttons. `getClinicalContext` controls what is passed to questionnaire actions:
 
 | Action scope | `record` argument | Default behavior |
 | ------------ | ----------------- | ---------------- |
@@ -310,6 +310,8 @@ If you maintain a custom EMR build on top of Beda EMR:
 ## Related documentation
 
 - [EMR component](./emr-component.md) — application shell, routing, and menu customization
+- [Resource list page](./resource-list-page.md) — list page layout and action wiring
+- [Questionnaire actions](./questionnaire-actions.md) — Questionnaire + Mapping authoring for list actions
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout
 - [Form render engine](./form-engine.md) — integrating `@beda.software/fhir-questionnaire` in custom projects
 - [Custom EMR build](./custom-emr-build.md) — project setup and customization entry points

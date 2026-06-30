@@ -1,6 +1,8 @@
 # Form render engine
 This article describes how to use SDC form engine https://github.com/beda-software/fhir-questionnaire outside of Beda EMR.
 
+For questionnaire-driven list actions (header, row, batch buttons on `ResourceListPage`), see [Questionnaire actions](./questionnaire-actions.md).
+
 For sharing launch context (patient, encounter, author, and other FHIR resources) across forms without passing `launchContextParameters` on every component, see [Clinical context](./clinical-context.md).
 
 1. Install fhir-questionnaire as submodule to your project and specify it as a workspace in your package.json https://github.com/beda-software/fhir-questionnaire?tab=readme-ov-file#installation-instructions

@@ -162,6 +162,8 @@ import { navigationAction, questionnaireAction, customAction } from 'src/uberCom
 
 Opens a modal with [`QuestionnaireResponseForm`](https://github.com/beda-software/fhir-emr/blob/main/src/components/QuestionnaireResponseForm/index.tsx). On success, shows a notification and calls `reload()`.
 
+Define the form as a `Questionnaire` + `Mapping` pair on the FHIR server, then reference the questionnaire id here. See [Questionnaire actions](./questionnaire-actions.md) for the full authoring workflow.
+
 ```tsx
 questionnaireAction(<Trans>Edit</Trans>, 'healthcare-service-edit')
 
@@ -387,6 +389,7 @@ Full details and examples: [Clinical context — Resource list pages](./clinical
 
 ## Related documentation
 
+- [Questionnaire actions](./questionnaire-actions.md) — define Questionnaire + Mapping pairs for header, row, and batch buttons
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout; embed `ResourceListPageContent` in tabs
 - [Clinical context](./clinical-context.md) — `getClinicalContext` for questionnaire launch parameters
 - [EMR component](./emr-component.md) — register list routes in `authenticatedRoutes`
