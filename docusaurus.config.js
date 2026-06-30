@@ -70,16 +70,6 @@ const config = {
 
   plugins: [
     [
-      'docusaurus-plugin-papersaurus',
-      {
-        keepDebugHtmls: false,
-        sidebarNames: [],
-        addDownloadButton: true,
-        autoBuildPdfs: true,
-        ignoreDocs: ['licenses'],
-        author: 'Ilya'
-      },
-],[
       '@docusaurus/plugin-ideal-image',
       {
         quality: 85,
