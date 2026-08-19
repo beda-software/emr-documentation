@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # ViewChart component
 
-The `ViewChart` component renders a time-series or categorical chart backed by Aidbox `ViewDefinition` or `AidboxQuery` resources. It fetches rows from the given data source, sorts them, turns them into a chart configuration, and renders the result — handling loading and error states along the way. Use it for patient dashboard widgets that chart lab results, questionnaire scores, or any other tabular data Aidbox can produce.
+The `ViewChart` component renders a time-series or categorical chart backed by Aidbox `ViewDefinition` or `Library` (SQL on FHIR SQLQuery) resources. It fetches rows from the given data source, sorts them, turns them into a chart configuration, and renders the result — handling loading and error states along the way. Use it for patient dashboard widgets that chart lab results, questionnaire scores, or any other tabular data Aidbox can produce.
 
 Source: [`src/uberComponents/ViewChart/index.tsx`](https://github.com/beda-software/fhir-emr/blob/main/src/uberComponents/ViewChart/index.tsx#L15)
 
@@ -38,8 +38,8 @@ type ViewChartProps<TRow extends ReferenceChartRow> = {
 
 | Prop | Required | Description |
 | ---- | -------- | ----------- |
-| `source` | Yes | `{ type: 'ViewDefinition' \| 'AidboxQuery', reference: string }` — which resource to run and its id, e.g. `{ type: 'ViewDefinition', reference: 'ViewDefinition/creatinine-observations' }`. |
-| `parameters` | No | FHIR `Parameters.parameter` entries passed to `$run` (ViewDefinition) or mapped to query params (AidboxQuery). Typically includes the patient reference. |
+| `source` | Yes | `{ type: 'ViewDefinition' \| 'Library', reference: string }` — which resource to run and its id, e.g. `{ type: 'ViewDefinition', reference: 'ViewDefinition/creatinine-observations' }`. `Library` is the way to run a custom SQL query. |
+| `parameters` | No | FHIR `Parameters.parameter` entries passed to `$run` (ViewDefinition) or `$sqlquery-run` (Library, nested under a `parameters` input parameter). Typically includes the patient reference. |
 | `sort` | No | Client-side row comparator applied after fetch. Defaults to `sortByAxisLabel`. |
 | `chart` | No | A `ViewChartConfig`, or a function from loaded rows to one. Defaults to `buildReferenceChart`, which derives title, reference-range bands, and y-axis domain from the rows themselves. |
 | `onPointClick` | No | Called with the clicked datum — useful for navigating to the source document (see the HMB example below). |
@@ -47,7 +47,7 @@ type ViewChartProps<TRow extends ReferenceChartRow> = {
 
 ### `ReferenceChartRow`
 
-Rows returned by the data source must match this shape — it's the common column set both `ViewDefinition` and `AidboxQuery` sources are expected to project:
+Rows returned by the data source must match this shape — it's the common column set `ViewDefinition` and `Library` sources are expected to project:
 
 ```tsx
 interface ReferenceChartRow {
@@ -113,7 +113,7 @@ Key points:
 
 ### HMBDiagnosticDashboard — multiple charts from a shared config array
 
-[`src/containers/PatientDetails/HMBDiagnostic/HMBDiagnosticDashboard.tsx`](https://github.com/beda-software/fhir-emr/blob/main/src/containers/PatientDetails/HMBDiagnostic/HMBDiagnosticDashboard.tsx) drives several `ViewChart` instances from one config array, mixing `ViewDefinition` and `AidboxQuery` sources:
+[`src/containers/PatientDetails/HMBDiagnostic/HMBDiagnosticDashboard.tsx`](https://github.com/beda-software/fhir-emr/blob/main/src/containers/PatientDetails/HMBDiagnostic/HMBDiagnosticDashboard.tsx) drives several `ViewChart` instances from one config array, mixing `ViewDefinition` and `Library` sources:
 
 ```tsx
 export function HMBDiagnosticDashboard({ patient }: { patient: Patient }) {
@@ -158,16 +158,16 @@ export function HMBDiagnosticDashboard({ patient }: { patient: Patient }) {
 },
 {
     id: 'pain-severity-score',
-    source: { type: 'AidboxQuery', reference: 'AidboxQuery/hmb-pain-severity-score' },
+    source: { type: 'Library', reference: 'Library/hmb-pain-severity-score' },
     icon: <HeartOutlined />,
-    parameters: aidboxQueryPatientParameters,
+    parameters: sqlQueryPatientParameters,
     config: buildPainSeverityAndScoreChart, // config as a function of rows
 },
 ```
 
 Key points:
 
-- `ViewDefinition` sources here are filtered server-side with a `patient` FHIR reference parameter; the `AidboxQuery` source instead takes the bare patient id as a `valueString`, matching how its SQL query reads `{{params.patient}}` (see [ViewDefinition and AidboxQuery](#viewdefinition-and-aidboxquery) below).
+- `ViewDefinition` sources here are filtered server-side with a `patient` FHIR reference parameter; the `Library` source instead takes the bare patient id as a `valueString`, matching how its SQL query reads the `:patient` parameter (see [ViewDefinition and Library](#viewdefinition-and-library) below).
 - `onPointClick` is used for navigation: each row's `id` is carried through as `qrId` in the transformed datum, so clicking a point opens the `QuestionnaireResponse` document that produced it.
 - `renderChart` here wraps every chart in the shared `DashboardCard`, reading the title from the resolved `config` rather than hardcoding it per entry.
 - As in the creatinine example, `key={entry.id}-${refreshKey}` forces a re-fetch of all charts after a new questionnaire response is submitted.
@@ -204,7 +204,7 @@ export const patientDashboardConfig: DashboardInstance = {
 
 Unlike the query-driven `top` widgets (which declare a FHIR `search` and get pre-fetched resources), a `ViewChart`-based widget fetches its own data — it needs no `query` entry, only `widget`. Follow this pattern to add your own `ViewChart` dashboards: build a small `WidgetProps`-compatible container, place it in whichever dashboard area fits, and let `ViewChart` handle the fetch and render internally.
 
-## ViewDefinition and AidboxQuery
+## ViewDefinition and Library
 
 `ViewChart`'s `source.type` selects which Aidbox operation supplies rows:
 
@@ -213,6 +213,7 @@ Unlike the query-driven `top` widgets (which declare a FHIR `search` and get pre
   ```yaml
   resourceType: ViewDefinition
   id: creatinine-observations
+  url: ViewDefinition/creatinine-observations
   resource: Observation
   where:
     - path: code.coding.where(system = 'http://loinc.org' and code = '2160-0').exists()
@@ -232,32 +233,53 @@ Unlike the query-driven `top` widgets (which declare a FHIR `search` and get pre
           type: decimal
   ```
 
-- **`AidboxQuery`** — a custom parameterized SQL resource, run via the `$query` endpoint (`GET /$query/:id`). Use it when a single FHIR resource type can't express the shape you need — e.g. joining rows from more than one source, as in the HMB example, where pain severity and pain score come from two different `ViewDefinition`-backed views (`sof.hmb_pain_severity`, `sof.hmb_pain_score`) and are combined by `id`. Parameters are declared on the resource and substituted with `{{params.name}}`; `ViewChart` passes `parameters` through as query-string params. Example — [`AidboxQuery/hmb-pain-severity-score`](https://github.com/beda-software/fhir-emr/blob/main/resources/init-seeds/AidboxQuery/hmb-pain-severity-score.yaml):
+- **`Library`** — a [SQL on FHIR SQLQuery](https://build.fhir.org/ig/HL7/sql-on-fhir/StructureDefinition-SQLQuery.html) encoded as a `Library` resource, run via the [`$sqlquery-run` operation](https://build.fhir.org/ig/HL7/sql-on-fhir/OperationDefinition-SQLQueryRun.html) (`POST /Library/:id/$sqlquery-run`). This is the recommended way to write a custom SQL query — use it when a single FHIR resource type can't express the shape you need, e.g. joining rows from more than one source, as in the HMB example, where pain severity and pain score come from two different `ViewDefinition`-backed views (`ViewDefinition/hmb-pain-severity`, `ViewDefinition/hmb-pain-score`) and are combined by `id`. The `Library`'s `relatedArtifact` entries declare which `ViewDefinition`s the query depends on and give each a `label` that the SQL text uses as its table name (`FROM severity`/`FULL JOIN score`, not the raw `sof.*` schema). Parameters are declared under `parameter` and substituted as `:name` placeholders; `ViewChart` sends `parameters` as a nested `Parameters` resource under the `parameters` input parameter of the request body (rather than as flat query-string params). Example — [`Library/hmb-pain-severity-score`](https://github.com/beda-software/fhir-emr/blob/main/resources/init-seeds/Library/hmb-pain-severity-score.yaml):
 
   ```yaml
-  resourceType: AidboxQuery
+  resourceType: Library
   id: hmb-pain-severity-score
-  query: >-
-    SELECT
-      COALESCE(severity.id, score.id) AS id,
-      COALESCE(severity.axis_label, score.axis_label) AS axis_label,
-      'Period Pain Severity & Score' AS title,
-      NULL AS reference_range,
-      severity.value_code AS value_code,
-      score.value_integer AS value_integer,
-      NULL AS value_quantity
-    FROM sof.hmb_pain_severity AS severity
-    FULL JOIN sof.hmb_pain_score AS score ON severity.id = score.id
-    WHERE COALESCE(severity.patient_id, score.patient_id) = {{params.patient}}
-  params:
-    patient:
-      type: "string"
-      isRequired: true
+  status: active
+  name: hmb_pain_severity_score
+  title: Period Pain Severity & Score
+  type:
+    coding:
+      - system: https://sql-on-fhir.org/ig/CodeSystem/LibraryTypesCodes
+        code: sql-query
+  relatedArtifact:
+    - type: depends-on
+      resource: ViewDefinition/hmb-pain-severity
+      label: severity
+    - type: depends-on
+      resource: ViewDefinition/hmb-pain-score
+      label: score
+  parameter:
+    - name: patient
+      use: in
+      type: string
+  content:
+    - contentType: application/sql
+      extension:
+        - url: https://sql-on-fhir.org/ig/StructureDefinition/sql-text
+          valueString: >-
+            SELECT
+              COALESCE(severity.id, score.id) AS id,
+              COALESCE(severity.axis_label, score.axis_label) AS axis_label,
+              'Period Pain Severity & Score' AS title,
+              NULL AS reference_range,
+              severity.value_code AS value_code,
+              score.value_integer AS value_integer,
+              NULL AS value_quantity
+            FROM severity
+            FULL JOIN score ON severity.id = score.id
+            WHERE COALESCE(severity.patient_id, score.patient_id) = :patient
+      data: <base64-encoded copy of the same SQL text>
   ```
 
-Whichever type you use, the returned columns must line up with `ReferenceChartRow` (or a superset of it, as `HMBChartMeta`/`HMBChartDatum` do) — `id`, `axis_label`, `title`, `reference_range`, and the relevant `value_*` column — since that's what `ViewChart`'s default sort and `buildReferenceChart` config expect. See the [SQL on FHIR reference](https://www.health-samurai.io/docs/aidbox/modules/sql-on-fhir/defining-flat-views-with-view-definitions) and [Aidbox custom search](https://docs.aidbox.app/tutorials/data-api/custom-search) docs for the full `ViewDefinition`/`AidboxQuery` syntax.
+  A `ViewDefinition` referenced by `relatedArtifact` needs its own `url` (e.g. `url: ViewDefinition/hmb-pain-severity`) so the `Library` can resolve it by that dependency.
 
-In a [custom EMR build](./custom-emr-build.md), add your `ViewDefinition`/`AidboxQuery` YAML files to `contrib/fhir-emr/resources/init-seeds/` so Aidbox loads them on startup, the same way [questionnaire actions](./questionnaire-actions.md) load `Questionnaire`/`Mapping` resources.
+Whichever type you use, the returned columns must line up with `ReferenceChartRow` (or a superset of it, as `HMBChartMeta`/`HMBChartDatum` do) — `id`, `axis_label`, `title`, `reference_range`, and the relevant `value_*` column — since that's what `ViewChart`'s default sort and `buildReferenceChart` config expect. See the [SQL on FHIR reference](https://www.health-samurai.io/docs/aidbox/modules/sql-on-fhir/defining-flat-views-with-view-definitions) and the [SQL on FHIR SQLQuery spec](https://build.fhir.org/ig/HL7/sql-on-fhir/StructureDefinition-SQLQuery.html) docs for the full `ViewDefinition`/`Library` syntax.
+
+In a [custom EMR build](./custom-emr-build.md), add your `ViewDefinition`/`Library` YAML files to `contrib/fhir-emr/resources/init-seeds/` so Aidbox loads them on startup, the same way [questionnaire actions](./questionnaire-actions.md) load `Questionnaire`/`Mapping` resources.
 
 ## Related documentation
 
