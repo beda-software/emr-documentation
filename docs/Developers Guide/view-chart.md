@@ -174,7 +174,7 @@ Key points:
 
 ## Using ViewChart in a patient dashboard
 
-The patient dashboard (`src/containers/PatientDetails/Dashboard/config.ts`) is a `DashboardInstance` — an object with `top` / `left` / `right` / `bottom` arrays of `WidgetInfo`, each `{ widget, query? }`. `ViewChart`-based widgets slot in the same way as any other dashboard card, as long as they're wrapped in a component matching `WidgetProps` (`{ patient, widgetInfo }`).
+The patient dashboard (`src/containers/PatientDetails/Dashboard/config.ts`) is a `DashboardInstance` — an object with `top` / `left` / `right` / `bottom` arrays of `WidgetInfo`, each `{ widget, query? }`. `ViewChart`-based widgets slot in the same way as any other dashboard card, as long as they're wrapped in a component matching `WidgetProps` (`{ patient, widgetInfo }`). See [Dashboard page](./dashboard-page.md) for how the dashboard is wired up and the other widget patterns it supports.
 
 [`CreatinineDashboardContainer`](https://github.com/beda-software/fhir-emr/blob/main/src/containers/PatientDetails/PatientOverviewDynamic/containers/CreatinineDashboardContainer/index.tsx) is that wrapper for the creatinine example above — it just forwards `patient` to `CreatinineDashboard`:
 
@@ -283,6 +283,7 @@ In a [custom EMR build](./custom-emr-build.md), add your `ViewDefinition`/`Libra
 
 ## Related documentation
 
+- [Dashboard page](./dashboard-page.md) — `Dashboard`/`DashboardInstance` config, `Dashboards` rendering, and the other widget patterns (`StandardCardContainerFabric`, bespoke query-driven widgets)
 - [Resource detail page](./resource-detail-page.md) — tabbed FHIR resource detail layout, another place chart-like widgets are commonly embedded
 - [Questionnaire actions](./questionnaire-actions.md) — Questionnaire + Mapping pairs, including how init-seed resources are loaded
 - [Custom EMR build](./custom-emr-build.md) — project template, including the Aidbox init-seeds volume
